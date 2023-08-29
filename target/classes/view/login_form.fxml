@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cashieranchorpane" prefHeight="475.0" prefWidth="829.0" styleClass="dashboard" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="520.0" fitWidth="853.0" layoutX="-24.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/9896114_3430.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="adminAncPane" layoutX="177.0" layoutY="48.0" opacity="0.82" prefHeight="426.0" prefWidth="452.0" styleClass="loginPageleLeftSlide" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="96.0" fitWidth="121.0" layoutX="178.0" layoutY="-40.0" pickOnBounds="true" preserveRatio="true" styleClass="dashboardButton">
+               <image>
+                  <Image url="@../assets/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="166.0" layoutY="76.0" prefHeight="36.0" prefWidth="122.0" text="User Login" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtLogPassword" layoutX="84.0" layoutY="230.0" prefHeight="44.0" prefWidth="285.0" promptText="Password" style="-fx-background-color: transperan; -fx-border-color: #0F0E0E; -fx-border-width: 0px 0px 0px 3px;">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </PasswordField>
+            <JFXButton layoutX="175.0" layoutY="286.0" onAction="#loginPageOnAction" prefHeight="29.0" prefWidth="106.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Login">
+               <font>
+                  <Font name="Book Antiqua Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <Separator layoutX="70.0" layoutY="204.0" prefHeight="0.0" prefWidth="285.0" AnchorPane.bottomAnchor="219.0" />
+            <Separator layoutX="70.0" layoutY="273.0" prefHeight="0.0" prefWidth="285.0" />
+            <TextField fx:id="txtUserName" layoutX="86.0" layoutY="166.0" prefHeight="40.0" prefWidth="267.0" promptText="Username" style="-fx-background-color: transperan; -fx-border-color: #0F0E0E; -fx-border-width: 0px 0px 0px 3px;" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="161.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </TextField>
+            <Hyperlink layoutX="160.0" layoutY="332.0" onAction="#forgotYourPasswordOnAction" prefHeight="40.0" prefWidth="143.0" text="Forgot Your Password?" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="135.0" layoutY="361.0" onAction="#dontHaveAccountOnActon" prefHeight="40.0" prefWidth="193.0" text="Don't have a Account ? Sign Up" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+            <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="355.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-eye-96.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnShowPassword" layoutX="354.0" layoutY="236.0" mnemonicParsing="false" onAction="#ShowPasswordOnAction" onMouseEntered="#OnMousePassword" onMouseExited="#OnMousePWDExt" opacity="0.0" prefHeight="20.0" prefWidth="13.0" text="show" />
+            <TextField fx:id="txtPassword2" layoutX="84.0" layoutY="230.0" prefHeight="40.0" prefWidth="267.0" promptText="Password" style="-fx-background-color: transperan; -fx-border-color: #0F0E0E; -fx-border-width: 0px 0px 0px 3px;">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

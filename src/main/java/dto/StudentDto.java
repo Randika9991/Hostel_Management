@@ -1,0 +1,98 @@
+package dto;
+
+import entity.Student;
+
+import java.time.LocalDate;
+
+public class StudentDto {
+    private String studentId;
+    private String name;
+    private String address;
+    private String contactNo;
+    private LocalDate dateOfBirth;
+    private String gender;
+
+    public StudentDto() {
+    }
+
+    public StudentDto(String studentId, String name, String address, String contactNo, LocalDate dateOfBirth, String gender) {
+        this.studentId = studentId;
+        this.name = name;
+        this.address = address;
+        this.contactNo = contactNo;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDto{" +
+                "studentId='" + studentId + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
+    public Student toEntity() {
+        Student student = new Student();
+        student.setStudentId(this.studentId);
+        student.setName(this.name);
+        student.setAddress(this.address);
+        student.setContactNo(this.contactNo);
+        student.setDateOfBirth(this.dateOfBirth);
+        student.setGender(this.gender);
+        return student;
+    }
+
+}
