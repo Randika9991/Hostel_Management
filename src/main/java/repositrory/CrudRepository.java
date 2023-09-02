@@ -1,11 +1,9 @@
 package repositrory;
 
-import entity.Student;
-
-public interface CrudRepository <T,ID>{
+public interface CrudRepository <T,ID> extends SuperRepository{
 
 
-    public ID save(T customer) ;
+    public String save(T customer) ;
 
     public T getId(ID id) ;
 

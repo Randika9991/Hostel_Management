@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingFormController">
+   <children>
+      <ImageView fitHeight="804.0" fitWidth="1295.0" layoutX="-67.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product-plain-studio-background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="606.0" layoutY="67.0" prefHeight="55.0" prefWidth="171.0" text="SETTINGS" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="367.0" layoutY="148.0" prefHeight="35.0" prefWidth="137.0" text="User Name" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtStuName" focusColor="WHITE" layoutX="367.0" layoutY="187.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
+      <Label layoutX="367.0" layoutY="278.0" prefHeight="35.0" prefWidth="127.0" text="Password" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="812.0" layoutY="189.0" onAction="#changeOnActionUser" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Change" textFill="WHITE" />
+      <JFXTextField fx:id="txtStuPassword" focusColor="WHITE" layoutX="367.0" layoutY="320.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
+      <JFXButton layoutX="1024.0" layoutY="247.0" onAction="#doneOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Done" textFill="WHITE" />
+      <JFXButton layoutX="812.0" layoutY="322.0" onAction="#changeOnActionPassword" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Change" textFill="WHITE" />
+      <Label layoutX="766.0" layoutY="148.0" prefHeight="35.0" prefWidth="205.0" text="Change new user name" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="766.0" layoutY="278.0" prefHeight="35.0" prefWidth="205.0" text="Change new password" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lableUser" layoutX="367.0" layoutY="188.0" prefHeight="35.0" prefWidth="205.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" text="Label" />
+      <Label fx:id="lablePassword" layoutX="367.0" layoutY="321.0" prefHeight="35.0" prefWidth="205.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" text="Label" />
+   </children>
+</AnchorPane>

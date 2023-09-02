@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import service.ServiceFactory;
+import service.custom.LoginService;
 
 import java.io.IOException;
 
@@ -34,6 +36,8 @@ public class LoginFormController {
 
     @FXML
     private TextField txtPassword2;
+
+    LoginService loginService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.LOGIN);
 
     @FXML
     void dontHaveAccountOnActon(ActionEvent event) throws IOException {

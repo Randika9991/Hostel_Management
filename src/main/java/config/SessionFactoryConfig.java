@@ -1,5 +1,8 @@
 package config;
 
+import entity.CreateNewUser;
+import entity.Reservation;
+import entity.Room;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +28,9 @@ public class SessionFactoryConfig {
         }
         sessionFactory = new Configuration().setProperties(properties)
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(CreateNewUser.class)
+                .addAnnotatedClass(Room.class)
+                .addAnnotatedClass(Reservation.class)
                 .buildSessionFactory();
     }
 

@@ -1,16 +1,20 @@
 package controller;
 
+import dto.CreateNewUserDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import service.ServiceFactory;
+import service.custom.NewAccountService;
 
 import java.io.IOException;
 
@@ -40,10 +44,40 @@ public class NewAccountFormControoler {
     @FXML
     private PasswordField txtLogConfirmPassword1;
 
+    NewAccountService newAccountService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.NEW_ACCOUNT);
+
+
     @FXML
     void createPageOnAction(ActionEvent event) {
+        CreateNewUserDto customer = getStudent();
 
+       // System.out.println("Saved Cus Id: " + savedCusId);
+        if (txtLogConfirmPassword1.getText().isEmpty()&&txtUserName.getText().isEmpty()&&txtLogPassword.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill the field!").showAndWait();
+        } else {
+            if (txtLogConfirmPassword1.getText().isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please Enter Conform Password!").showAndWait();
+            } else {
+                if (txtLogPassword.getText().equals(txtLogConfirmPassword1.getText())) {
 
+                    String savedCusId = newAccountService.saveuser(customer);
+                    if (!savedCusId.equals(null)) {
+                        new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "Account Created!").showAndWait();
+                    } else {
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Wrong Conform Password!").showAndWait();
+                }
+            }
+        }
+    }
+
+    private CreateNewUserDto getStudent() {
+        CreateNewUserDto createNewUserDto = new CreateNewUserDto();
+       // createNewUserDto.setUserId(1);
+        createNewUserDto.setUserName(txtUserName.getText()); // <==== Add
+        createNewUserDto.setUserPassword(txtLogPassword.getText());
+        return createNewUserDto;
     }
 
     @FXML
@@ -57,7 +91,6 @@ public class NewAccountFormControoler {
         stage.setScene(scene);
         stage.show();
         adminAncPane.getScene().getWindow().hide();
-
     }
 
     @FXML

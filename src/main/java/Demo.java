@@ -1,8 +1,10 @@
+import config.SessionFactoryConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.Session;
 
 import java.net.URL;
 
@@ -12,7 +14,7 @@ public class Demo extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-       // Session session = SessionFactoryConfig.getInstance().getSession();
+      // Session session = SessionFactoryConfig.getInstance().getSession();
         URL resource = Demo.class.getResource("view/login_form.fxml");
         Parent load = FXMLLoader.load(resource);
 

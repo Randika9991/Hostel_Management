@@ -43,10 +43,10 @@
       <JFXTextField fx:id="txtStuName" focusColor="WHITE" layoutX="909.0" layoutY="159.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXTextField fx:id="txtStuAddress" focusColor="WHITE" layoutX="357.0" layoutY="264.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXTextField fx:id="txtStuNumber" focusColor="WHITE" layoutX="909.0" layoutY="246.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
-      <JFXButton layoutX="1073.0" layoutY="410.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Save" textFill="WHITE" />
-      <JFXButton layoutX="964.0" layoutY="410.0" onAction="#deleteOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Delete" textFill="WHITE" />
-      <JFXButton layoutX="856.0" layoutY="410.0" onAction="#updateOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Update" textFill="WHITE" />
-      <TableView fx:id="mainCOMStudent" layoutX="309.0" layoutY="462.0" onMouseClicked="#studentOnMouse" prefHeight="279.0" prefWidth="855.0">
+      <JFXButton layoutX="1071.0" layoutY="410.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Save" textFill="WHITE" />
+      <JFXButton layoutX="962.0" layoutY="410.0" onAction="#deleteOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Delete" textFill="WHITE" />
+      <JFXButton layoutX="854.0" layoutY="410.0" onAction="#updateOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Update" textFill="WHITE" />
+      <TableView fx:id="mainCOMStudent" layoutX="307.0" layoutY="462.0" onMouseClicked="#studentOnMouse" prefHeight="279.0" prefWidth="855.0">
          <columns>
             <TableColumn fx:id="COMStuId" prefWidth="128.0" text="Student Id" />
             <TableColumn fx:id="COMStuName" prefWidth="142.0" text="Student Name" />
@@ -71,7 +71,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpDateOfBirth" layoutX="357.0" layoutY="351.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" />
-      <JFXComboBox fx:id="COBStudentId" focusColor="#f5f5f5" layoutX="909.0" layoutY="333.0" prefHeight="35.0" prefWidth="205.0" promptText="Employee Id" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
+      <DatePicker fx:id="dpDateOfBirth" layoutX="357.0" layoutY="351.0" prefHeight="35.0" prefWidth="205.0" stylesheets="@../style/style.css" />
+      <JFXComboBox fx:id="COBGender" focusColor="#f5f5f5" layoutX="909.0" layoutY="333.0" prefHeight="35.0" prefWidth="205.0" promptText="Employee Id" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
    </children>
 </AnchorPane>
