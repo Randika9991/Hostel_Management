@@ -3,15 +3,16 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReservationFormController">
    <children>
@@ -25,47 +26,49 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="367.0" layoutY="133.0" text="Student Id" textFill="WHITE">
+      <Label layoutX="367.0" layoutY="130.0" prefHeight="35.0" prefWidth="167.0" text="Reservation Id" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="920.0" layoutY="202.0" text="Contact Number" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtStuAddress" focusColor="WHITE" layoutX="367.0" layoutY="259.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
-      <JFXTextField fx:id="txtStuNumber" focusColor="WHITE" layoutX="919.0" layoutY="241.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXButton layoutX="1081.0" layoutY="405.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Save" textFill="WHITE" />
       <JFXButton layoutX="972.0" layoutY="405.0" onAction="#deleteOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Delete" textFill="WHITE" />
       <JFXButton layoutX="864.0" layoutY="405.0" onAction="#updateOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Update" textFill="WHITE" />
-      <TableView fx:id="mainCOMStudent" layoutX="317.0" layoutY="457.0" onMouseClicked="#studentOnMouse" prefHeight="279.0" prefWidth="855.0">
+      <TableView fx:id="mainCOMStudent" layoutX="318.0" layoutY="457.0" onMouseClicked="#studentOnMouse" prefHeight="279.0" prefWidth="855.0">
          <columns>
-            <TableColumn fx:id="COMStuId" prefWidth="128.0" text="Student Id" />
-            <TableColumn fx:id="COMStuName" prefWidth="142.0" text="Student Name" />
-            <TableColumn fx:id="COMStuAddress" prefWidth="163.0" text="Address" />
-            <TableColumn fx:id="COMStuContact" prefWidth="161.0" text="Contact Number" />
-            <TableColumn fx:id="COMDOB" prefWidth="134.0" text="DOB" />
-            <TableColumn fx:id="COMGender" prefWidth="125.0" text="Gender" />
+            <TableColumn fx:id="COMResId" prefWidth="181.0" text="Reservation Id" />
+            <TableColumn fx:id="COMResDate" prefWidth="167.0" text="Date" />
+            <TableColumn fx:id="COMStuId" prefWidth="154.0" text="Student Id" />
+            <TableColumn fx:id="COMRoomType" prefWidth="176.0" text="Room Type Id" />
+            <TableColumn fx:id="COMStatus" prefWidth="176.0" text="Status" />
          </columns>
       </TableView>
-      <Label layoutX="367.0" layoutY="220.0" text="Address" textFill="WHITE">
+      <Label layoutX="367.0" layoutY="216.0" prefHeight="35.0" prefWidth="125.0" text="Student Id" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="919.0" layoutY="289.0" text="Gender" textFill="WHITE">
+      <Label layoutX="919.0" layoutY="214.0" text="Room Type Id" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="367.0" layoutY="307.0" text="DOB" textFill="WHITE">
+      <Label layoutX="919.0" layoutY="131.0" text="Date" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpDateOfBirth" layoutX="367.0" layoutY="346.0" prefHeight="35.0" prefWidth="205.0" stylesheets="@../style/style.css" />
-      <JFXComboBox fx:id="COBStudentId" focusColor="#f5f5f5" layoutX="919.0" layoutY="328.0" prefHeight="35.0" prefWidth="205.0" promptText="Employee Id" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
+      <DatePicker fx:id="dpresDate" layoutX="919.0" layoutY="168.0" prefHeight="35.0" prefWidth="205.0" stylesheets="@../style/style.css" />
+      <JFXComboBox fx:id="COBRoomId" focusColor="#f5f5f5" layoutX="919.0" layoutY="251.0" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
+      <JFXTextField fx:id="txtResId" focusColor="WHITE" layoutX="367.0" layoutY="168.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
+      <Label layoutX="367.0" layoutY="301.0" prefHeight="35.0" prefWidth="125.0" text="Status" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="COBStatus" focusColor="#f5f5f5" layoutX="367.0" layoutY="338.0" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
+      <ComboBox fx:id="COBStudentId" layoutX="367.0" layoutY="253.0" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: white;" />
+      <Separator layoutX="367.0" layoutY="290.0" prefHeight="3.0" prefWidth="205.0" />
+      <Separator layoutX="367.0" layoutY="375.0" prefHeight="3.0" prefWidth="205.0" />
    </children>
 </AnchorPane>

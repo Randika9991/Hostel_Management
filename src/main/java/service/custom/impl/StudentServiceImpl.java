@@ -7,7 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import repositrory.RepositoryFactory;
 import repositrory.custom.StudentRepository;
+import repositrory.custom.UserRepository;
 import repositrory.custom.impl.StudentRepositoryimpl;
 import service.custom.StudentService;
 
@@ -15,27 +17,14 @@ import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
 
-    private static StudentServiceImpl studentService;
-    private final StudentRepository studentRepository;
-
-    public StudentServiceImpl(){
-        studentRepository = (StudentRepository) new StudentRepositoryimpl();
-    }
-
-    public static StudentServiceImpl getInstance() {
-        return null == studentService
-                ? studentService = new StudentServiceImpl()
-                : studentService;
-    }
-
-
+    StudentRepository userRepository = RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryType.STUDENT);
     @Override
     public String saveStudent(StudentDto studentDto) {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
-            studentRepository.setSession(session);
-            String studentId = studentRepository.save(studentDto.toEntity());
+            userRepository.setSession(session);
+            String studentId = userRepository.save(studentDto.toEntity());
             transaction.commit();
             session.close();
             return studentId;
@@ -51,8 +40,8 @@ public class StudentServiceImpl implements StudentService {
     public StudentDto getStudent(int id) {
         Session session = SessionFactoryConfig.getInstance().getSession();
         try {
-            studentRepository.setSession(session);
-            Student student = studentRepository.getId(id);
+            userRepository.setSession(session);
+            Student student = userRepository.getId(id);
             session.close();
             return student.toDto();
         } catch (Exception e) {
@@ -66,8 +55,8 @@ public class StudentServiceImpl implements StudentService {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
-            studentRepository.setSession(session);
-            studentRepository.update(studentDto.toEntity());
+            userRepository.setSession(session);
+            userRepository.update(studentDto.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -84,8 +73,8 @@ public class StudentServiceImpl implements StudentService {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
-            studentRepository.setSession(session);
-            studentRepository.delete(studentDto.toEntity());
+            userRepository.setSession(session);
+            userRepository.delete(studentDto.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -102,8 +91,8 @@ public class StudentServiceImpl implements StudentService {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction =session.beginTransaction();
         try {
-            studentRepository.setSession(session);
-            List<Student> studentList = studentRepository.getDetailsToTableView();
+            userRepository.setSession(session);
+            List<Student> studentList = userRepository.getDetailsToTableView();
             ObservableList<StudentDto> studentObList = FXCollections.observableArrayList();
             for (Student s: studentList){
                 studentObList.add(

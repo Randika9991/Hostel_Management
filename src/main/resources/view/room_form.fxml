@@ -44,7 +44,7 @@
       <JFXButton layoutX="1073.0" layoutY="409.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Save" textFill="WHITE" />
       <JFXButton layoutX="964.0" layoutY="409.0" onAction="#deleteOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Delete" textFill="WHITE" />
       <JFXButton layoutX="856.0" layoutY="409.0" onAction="#updateOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Update" textFill="WHITE" />
-      <TableView fx:id="mainCOMStudent" layoutX="309.0" layoutY="461.0" onMouseClicked="#studentOnMouse" prefHeight="279.0" prefWidth="855.0">
+      <TableView fx:id="mainCOMStudent" layoutX="309.0" layoutY="461.0" onMouseClicked="#roomOnMouse" prefHeight="279.0" prefWidth="855.0">
          <columns>
             <TableColumn fx:id="COMRoomTYId" prefWidth="124.0" text="Room Type Id" />
             <TableColumn fx:id="COMRoomType" prefWidth="102.0" text="Type" />

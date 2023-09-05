@@ -65,7 +65,6 @@ public class StudentController {
         setDataToTableView();
     }
 
-
     @FXML
     void deleteOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
@@ -114,7 +113,6 @@ public class StudentController {
         txtStuNumber.setText(columns.get(3).getCellData(row).toString());
         dpDateOfBirth.setValue((LocalDate) columns.get(4).getCellData(row));
         COBGender.setValue(columns.get(5).getCellData(row).toString());
-
     }
 
     @FXML
@@ -189,6 +187,4 @@ public class StudentController {
         COMDOB.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         COMGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
     }
-
-
 }

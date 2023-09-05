@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public CreateNewUser getId(Integer id) {
+    public CreateNewUser getId(String id) {
         return session.get(CreateNewUser.class, id);
     }
 

@@ -1,10 +1,13 @@
 package controller;
 
+import dto.CreateNewUserDto;
+import dto.RoomDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,6 +21,8 @@ import service.custom.LoginService;
 import java.io.IOException;
 
 public class LoginFormController {
+
+    private static String Name;
 
     @FXML
     private AnchorPane cashieranchorpane;
@@ -37,6 +42,10 @@ public class LoginFormController {
     @FXML
     private TextField txtPassword2;
 
+    public String getName() {
+        return Name;
+    }
+
     LoginService loginService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.LOGIN);
 
     @FXML
@@ -48,16 +57,37 @@ public class LoginFormController {
 
     @FXML
     void loginPageOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = null;
-        //stage.setTitle("SPICY FLAVOUR");
-        //stage.getIcons().add(new Image("lk.ijse.global_flavour.assets/icons8-chilli-100.png"));
-        root = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        adminAncPane.getScene().getWindow().hide();
 
+        if (txtUserName.getText().isEmpty() && txtLogPassword.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please Enter Your name and password!").showAndWait();
+        } else {
+            if (txtUserName.getText().isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please fill User Name!").showAndWait();
+            } else {
+                if (txtLogPassword.getText().isEmpty()) {
+                    new Alert(Alert.AlertType.ERROR, "Please fill User Password!").showAndWait();
+                } else {
+                    CreateNewUserDto existingCustomer = loginService.getUser(txtUserName.getText());
+                    System.out.println(existingCustomer);
+
+                    if (existingCustomer.getUserPassword().equals(txtLogPassword.getText())) {
+                        Name = existingCustomer.getUserName();
+                        Stage stage = new Stage();
+                        Parent root = null;
+                        //stage.setTitle("SPICY FLAVOUR");
+                        //stage.getIcons().add(new Image("lk.ijse.global_flavour.assets/icons8-chilli-100.png"));
+                        root = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                        adminAncPane.getScene().getWindow().hide();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Please try again!").showAndWait();
+                    }
+                }
+            }
+
+        }
     }
 
     @FXML

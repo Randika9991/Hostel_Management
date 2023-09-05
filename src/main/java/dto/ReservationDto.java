@@ -20,17 +20,17 @@ import java.time.LocalDate;
 public class ReservationDto {
     private String resId;
     private LocalDate date;
+    private String studentId;
+    private String roomTypeId;
     private String status;
-    private Student student;
-    private Room room;
 
     public Reservation toEntity() {
         Reservation reservation = new Reservation();
         reservation.setResId(this.resId);
         reservation.setDate(this.date);
         reservation.setStatus(this.status);
-        reservation.setStudent(this.student);
-        reservation.setRoom(this.room);
+        reservation.setStudentId(this.studentId);
+        reservation.setRoomTypeId(this.roomTypeId);
         return reservation;
     }
 }

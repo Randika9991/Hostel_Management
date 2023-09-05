@@ -2,6 +2,7 @@ package service.custom;
 
 import dto.RoomDto;
 import dto.StudentDto;
+import javafx.collections.ObservableList;
 import service.SuperService;
 
 public interface RoomService extends SuperService {
@@ -12,4 +13,6 @@ public interface RoomService extends SuperService {
     boolean updateRoom(RoomDto roomDto);
 
     boolean deleteRoom(RoomDto roomDto);
+
+    ObservableList<RoomDto> getDetailsToTableView();
 }

@@ -46,6 +46,7 @@ public class StudentRepositoryimpl implements StudentRepository {
         session.delete(student);
     }
 
+
     /*public List<Student> getCustomersHQL() {
         String sql = "FROM Student";
         Query query = session.createQuery(sql);

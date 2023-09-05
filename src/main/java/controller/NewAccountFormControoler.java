@@ -50,7 +50,6 @@ public class NewAccountFormControoler {
     @FXML
     void createPageOnAction(ActionEvent event) {
         CreateNewUserDto customer = getStudent();
-
        // System.out.println("Saved Cus Id: " + savedCusId);
         if (txtLogConfirmPassword1.getText().isEmpty()&&txtUserName.getText().isEmpty()&&txtLogPassword.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please fill the field!").showAndWait();

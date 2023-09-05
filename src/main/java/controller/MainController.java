@@ -38,8 +38,10 @@ public class MainController {
     }
 
     @FXML
-    void reservationsOnAction(ActionEvent event) {
-
+    void reservationsOnAction(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/Reservation_form.fxml"));
+        adminAncPane.getChildren().clear();
+        adminAncPane.getChildren().add(load);
     }
 
     @FXML

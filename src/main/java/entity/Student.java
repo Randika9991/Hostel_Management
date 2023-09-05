@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+
 @Entity
 @Table(name = "student")
 public class Student {

@@ -1,9 +1,6 @@
 package repositrory;
 
-import repositrory.custom.impl.ReservationRepositoryImpl;
-import repositrory.custom.impl.RoomRepositoryImpl;
-import repositrory.custom.impl.StudentRepositoryimpl;
-import repositrory.custom.impl.UserRepositoryImpl;
+import repositrory.custom.impl.*;
 import service.ServiceFactory;
 import service.SuperService;
 import service.custom.impl.*;
@@ -18,7 +15,7 @@ public class RepositoryFactory {
         return (repositoryFactory == null) ? repositoryFactory = new RepositoryFactory() : repositoryFactory;
     }
     public enum RepositoryType{
-       ROOM,RESERVATION,USER,STUDENT
+       ROOM,RESERVATION,USER,STUDENT,QUERY
     }
     public <T extends SuperRepository>T getRepository(RepositoryType type) {
         switch (type) {
@@ -30,6 +27,8 @@ public class RepositoryFactory {
                 return (T)new UserRepositoryImpl();
             case STUDENT:
                 return (T)new StudentRepositoryimpl();
+            case QUERY:
+                return (T)new QueryRepositoryImpl();
             default:
                 return null;
         }

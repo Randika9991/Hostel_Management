@@ -72,6 +72,6 @@
          </font>
       </Label>
       <DatePicker fx:id="dpDateOfBirth" layoutX="357.0" layoutY="351.0" prefHeight="35.0" prefWidth="205.0" stylesheets="@../style/style.css" />
-      <JFXComboBox fx:id="COBGender" focusColor="#f5f5f5" layoutX="909.0" layoutY="333.0" prefHeight="35.0" prefWidth="205.0" promptText="Employee Id" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="COBGender" focusColor="#f5f5f5" layoutX="909.0" layoutY="333.0" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: white;" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" unFocusColor="WHITE" />
    </children>
 </AnchorPane>

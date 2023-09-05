@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 
 @Entity
 @Table(name = "reservation")
@@ -20,15 +19,21 @@ public class Reservation {
     @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "student_id")
+    private String studentId;
+
+    @Column(name = "room_type_id")
+    private String roomTypeId;
+
     @Column(name = "status")
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "student_id" ,unique = true)
+    @JoinColumn(name = "student_id" ,unique = true ,insertable = false,updatable = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "room_type_id")
+    @JoinColumn(name = "room_type_id",insertable = false,updatable = false)
     private Room room;
 
     public ReservationDto toDto() {
@@ -36,8 +41,8 @@ public class Reservation {
         reservationDto.setResId(this.resId);
         reservationDto.setDate(this.date);
         reservationDto.setStatus(this.status);
-        reservationDto.setStudent(this.student);
-        reservationDto.setRoom(this.room);
+        reservationDto.setStudentId(this.studentId);
+        reservationDto.setRoomTypeId(this.roomTypeId);
         return reservationDto;
     }
 }

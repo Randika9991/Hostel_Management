@@ -10,4 +10,5 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     void setSession(Session session);
 
     List<Student> getDetailsToTableView();
+
 }

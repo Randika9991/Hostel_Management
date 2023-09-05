@@ -13,6 +13,7 @@ import service.custom.SettingService;
 public class SettingServiceImpl implements SettingService {
 
     UserRepository userRepository = RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryType.USER);
+
     @Override
     public String saveuser(CreateNewUserDto createNewUserDto) {
         Session session = SessionFactoryConfig.getInstance().getSession();
@@ -32,7 +33,7 @@ public class SettingServiceImpl implements SettingService {
     }
 
     @Override
-    public CreateNewUserDto getUser(int id) {
+    public CreateNewUserDto getUser(String id) {
         Session session = SessionFactoryConfig.getInstance().getSession();
         try {
            userRepository.setSession(session);

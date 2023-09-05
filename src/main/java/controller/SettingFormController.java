@@ -2,13 +2,18 @@ package controller;
 
 import com.jfoenix.controls.JFXTextField;
 import dto.CreateNewUserDto;
+import dto.StudentDto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import service.ServiceFactory;
+import service.custom.LoginService;
 import service.custom.SettingService;
 import service.custom.impl.SettingServiceImpl;
+import view.tm.StudentTM;
 
 public class SettingFormController {
 
@@ -25,7 +30,6 @@ public class SettingFormController {
     private Label lablePassword;
 
     SettingService settingService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.SETTING);
-
     @FXML
     void changeOnActionUser(ActionEvent event) {
         lableUser.setVisible(false);
@@ -45,6 +49,7 @@ public class SettingFormController {
         boolean savedCusId = settingService.updateUser(student);
         if (savedCusId) {
             new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
+            setDataToTableView();
             lableUser.setVisible(true);
             lablePassword.setVisible(true);
             txtStuName.setVisible(false);
@@ -53,6 +58,16 @@ public class SettingFormController {
             new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
         }
     }
+
+    public void setDataToTableView() {
+        LoginFormController loginFormController = new LoginFormController();
+        CreateNewUserDto existingCustomer = settingService.getUser(loginFormController.getName());
+        System.out.println(existingCustomer);
+        lableUser.setText(existingCustomer.getUserName());
+        lablePassword.setText(existingCustomer.getUserPassword());
+        txtStuName.setText(existingCustomer.getUserName());
+    }
+
 
     private CreateNewUserDto getStudent() {
         CreateNewUserDto createNewUserDto = new CreateNewUserDto();
@@ -63,6 +78,7 @@ public class SettingFormController {
 
     @FXML
     void initialize() {
+        setDataToTableView();
         txtStuName.setVisible(false);
         txtStuPassword.setVisible(false);
     }

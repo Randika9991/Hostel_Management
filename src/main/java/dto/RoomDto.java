@@ -27,6 +27,5 @@ public class RoomDto {
         room.setPerRoom(this.perRoom);
         room.setAvailableRooms(this.availableRooms);
         return room;
-
     }
 }
