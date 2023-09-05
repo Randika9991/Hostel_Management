@@ -48,12 +48,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </TextField>
-            <Hyperlink layoutX="160.0" layoutY="332.0" onAction="#forgotYourPasswordOnAction" prefHeight="40.0" prefWidth="143.0" text="Forgot Your Password?" underline="true">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Hyperlink>
-            <Hyperlink layoutX="135.0" layoutY="361.0" onAction="#dontHaveAccountOnActon" prefHeight="40.0" prefWidth="193.0" text="Don't have a Account ? Sign Up" underline="true">
+            <Hyperlink layoutX="135.0" layoutY="345.0" onAction="#dontHaveAccountOnActon" prefHeight="40.0" prefWidth="193.0" text="Don't have a Account ? Sign Up" underline="true">
                <font>
                   <Font size="13.0" />
                </font>

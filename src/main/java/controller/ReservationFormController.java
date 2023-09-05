@@ -3,7 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dto.ReservationDto;
-import dto.RoomDto;
+import dto.StudentDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import service.ServiceFactory;
 import service.custom.ReservationService;
 import view.tm.ReservationTM;
-import view.tm.StudentTM;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -54,37 +53,52 @@ public class ReservationFormController {
     @FXML
     private ComboBox<String> COBStudentId;
 
-
     ReservationService reservationService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.RESERVATION);
-
 
     @FXML
     void deleteOnAction(ActionEvent event) {
-        ReservationDto reservationDto = getStudent();
-        boolean savedCusId = reservationService.deleteReservation(reservationDto);
-        System.out.println("Saved Cus Id: " + savedCusId);
-        if (savedCusId) {
-            new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
-            setDataToTableView();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+        boolean emptyFields =  noEmptyValuesInTextFields() ;
+        if (emptyFields) {
+            ReservationDto reservationDto = getResovation();
+            boolean deleteRes = reservationService.deleteReservation(reservationDto);
+            if (deleteRes) {
+                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
+                setDataToTableView();
+                clearAll();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            }
         }
+
+    }
+
+    private void clearAll() {
+        txtResId.setText("");
+        dpresDate.setValue(null);
+        COBStudentId.setValue("");
+        COBRoomId.setValue("");
+        COBStatus.setValue("");
     }
 
     @FXML
     void saveOnAction(ActionEvent event) {
-        ReservationDto reservationDto = getStudent();
-        String reservation = reservationService.saveReservation(reservationDto);
-        System.out.println("Saved reservation: " + reservation);
-        if (reservation.equals(txtResId.getText())) {
-            new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save reservation!").showAndWait();
-            //setDataToTableView();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+        boolean emptyFields =  noEmptyValuesInTextFields() ;
+        if (emptyFields) {
+            ReservationDto reservationDto = getResovation();
+            String reservation = reservationService.saveReservation(reservationDto);
+            if (reservation.equals(txtResId.getText())) {
+                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save reservation!").showAndWait();
+                setDataToTableView();
+                clearAll();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
         }
     }
 
-    private ReservationDto getStudent() {
+    private ReservationDto getResovation() {
         ReservationDto reservationDto = new ReservationDto();
         reservationDto.setResId(txtResId.getText());
         reservationDto.setDate(dpresDate.getValue()); // <==== Add
@@ -109,13 +123,25 @@ public class ReservationFormController {
 
     @FXML
     void updateOnAction(ActionEvent event) {
-
+        boolean emptyFields =  noEmptyValuesInTextFields() ;
+        if (emptyFields) {
+            ReservationDto reservationDto = getResovation();
+            boolean savedCusId = reservationService.updateReservation(reservationDto);
+            if (savedCusId) {
+                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
+                setDataToTableView();
+                clearAll();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            }
+        }else{
+            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+        }
     }
 
     public void getAllRoomId() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-
             List<String> ids = reservationService.loadRoomIds();
             for (String id : ids) {
                 obList.add(id);
@@ -129,7 +155,6 @@ public class ReservationFormController {
     public void getAllStudentId() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-
             List<String> ids = reservationService.loadStudentIds();
             for (String id : ids) {
                 obList.add(id);
@@ -137,6 +162,19 @@ public class ReservationFormController {
             COBStudentId.setItems(obList);
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public boolean noEmptyValuesInTextFields() {
+        LocalDate date = dpresDate.getValue();
+        String roomId = String.valueOf(COBRoomId.getValue());
+        String status = String.valueOf(COBStatus.getValue());
+
+        if (!txtResId.getText().isEmpty() && date!=null && !roomId.isEmpty() && roomId!=null && status!=null) {
+            return true;
+        } else {
+            return false;
+
         }
     }
 
@@ -165,6 +203,7 @@ public class ReservationFormController {
         COMStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
+
     @FXML
     void initialize() {
         setDataToTableView();
@@ -173,4 +212,6 @@ public class ReservationFormController {
         getAllStudentId();
         setCellValueFactory();
     }
+
+
 }

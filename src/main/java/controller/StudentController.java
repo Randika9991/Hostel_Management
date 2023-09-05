@@ -65,16 +65,25 @@ public class StudentController {
         setDataToTableView();
     }
 
+    private void clearAll() {
+        txtStuId.setText("");
+        txtStuName.setText("");
+        txtStuAddress.setText("");
+        txtStuNumber.setText("");
+        dpDateOfBirth.setValue(null);
+        COBGender.setValue("");
+    }
+
     @FXML
     void deleteOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
             StudentDto customer = getStudent();
             boolean savedCusId = studentService.deleteStudent(customer);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (savedCusId) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }
@@ -89,10 +98,10 @@ public class StudentController {
         if (emptyFields) {
             StudentDto customer = getStudent();
             String savedCusId = studentService.saveStudent(customer);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (!savedCusId.equals(null)) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save succsess!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }
@@ -121,10 +130,10 @@ public class StudentController {
         if (emptyFields) {
             StudentDto customer = getStudent();
             boolean savedCusId = studentService.updateStudent(customer);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (savedCusId) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }

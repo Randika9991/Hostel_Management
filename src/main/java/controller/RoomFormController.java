@@ -65,6 +65,14 @@ public class RoomFormController {
         setCellValueFactory();
     }
 
+    private void clearAll() {
+        txtRoomTyId.setText("");
+        txtRoomType.setText("");
+        txtKeyMoney.setText("");
+        txtQTY.setText("");
+        txtMaxNo.setText("");
+    }
+
     @FXML
     void deleteOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
@@ -72,10 +80,10 @@ public class RoomFormController {
             System.out.println(txtRoomTyId.getText());
             RoomDto roomDto = getStudent();
             boolean savedCusId = roomService.deleteRoom(roomDto);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (savedCusId) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }
@@ -90,10 +98,10 @@ public class RoomFormController {
         if (emptyFields) {
             RoomDto roomDto = getStudent();
             String savedCusId = roomService.saveRoom(roomDto);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (savedCusId.equals(txtRoomTyId.getText())) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save succsess!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }
@@ -121,10 +129,10 @@ public class RoomFormController {
         if (emptyFields) {
             RoomDto roomDto = getStudent();
             boolean savedCusId = roomService.updateRoom(roomDto);
-            System.out.println("Saved Cus Id: " + savedCusId);
             if (savedCusId) {
                 new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
                 setDataToTableView();
+                clearAll();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
             }
