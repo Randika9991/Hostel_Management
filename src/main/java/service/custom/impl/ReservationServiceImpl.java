@@ -25,8 +25,6 @@ public class ReservationServiceImpl implements ReservationService {
     QueryRepository queryRepository = RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryType.QUERY);
     RoomRepository roomRepository = RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryType.ROOM);
 
-
-
     @Override
     public String saveReservation(ReservationDto reservationDto) {
         Session session = SessionFactoryConfig.getInstance().getSession();

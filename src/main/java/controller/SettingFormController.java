@@ -15,6 +15,8 @@ import service.custom.SettingService;
 import service.custom.impl.SettingServiceImpl;
 import view.tm.StudentTM;
 
+import java.awt.*;
+
 public class SettingFormController {
 
     @FXML
@@ -43,19 +45,20 @@ public class SettingFormController {
     }
 
     @FXML
-    void doneOnAction(ActionEvent event) {
+    void doneOnAction(ActionEvent event) throws AWTException {
         CreateNewUserDto student = getStudent();
 
         boolean savedCusId = settingService.updateUser(student);
         if (savedCusId) {
-            new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
+            AlertController.notificationBar("HOSTEL MANAGEMENT","Password Change success!");
+
             setDataToTableView();
             lableUser.setVisible(true);
             lablePassword.setVisible(true);
             txtStuName.setVisible(false);
             txtStuPassword.setVisible(false);
         } else {
-            new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            AlertController.animationMesseagewrong("Error","Error!");
         }
     }
 

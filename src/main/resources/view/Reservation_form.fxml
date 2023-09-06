@@ -70,5 +70,6 @@
       <ComboBox fx:id="COBStudentId" layoutX="367.0" layoutY="253.0" prefHeight="35.0" prefWidth="205.0" style="-fx-background-color: white;" />
       <Separator layoutX="367.0" layoutY="290.0" prefHeight="3.0" prefWidth="205.0" />
       <Separator layoutX="367.0" layoutY="375.0" prefHeight="3.0" prefWidth="205.0" />
+      <Label fx:id="lblReid" layoutX="367.0" layoutY="204.0" prefHeight="21.0" prefWidth="295.0" text="invalid Reservation id pleaes fill ex: RE-001" textFill="RED" />
    </children>
 </AnchorPane>

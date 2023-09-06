@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.NewAccountService;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class NewAccountFormControoler {
@@ -46,26 +47,27 @@ public class NewAccountFormControoler {
 
     NewAccountService newAccountService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.NEW_ACCOUNT);
 
-
     @FXML
-    void createPageOnAction(ActionEvent event) {
+    void createPageOnAction(ActionEvent event) throws AWTException {
         CreateNewUserDto customer = getStudent();
        // System.out.println("Saved Cus Id: " + savedCusId);
         if (txtLogConfirmPassword1.getText().isEmpty()&&txtUserName.getText().isEmpty()&&txtLogPassword.getText().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please fill the field!").showAndWait();
+            AlertController.animationMesseagewrong("Error","Please fill the field!");
         } else {
             if (txtLogConfirmPassword1.getText().isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "Please Enter Conform Password!").showAndWait();
+                AlertController.animationMesseagewrong("Error","Please Enter Conform Password!");
             } else {
                 if (txtLogPassword.getText().equals(txtLogConfirmPassword1.getText())) {
 
                     String savedCusId = newAccountService.saveuser(customer);
                     if (!savedCusId.equals(null)) {
-                        new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "Account Created!").showAndWait();
+
+
+                        AlertController.notificationBar("HOSTEL MANAGEMENT","Account Success!");
                     } else {
                     }
                 } else {
-                    new Alert(Alert.AlertType.ERROR, "Wrong Conform Password!").showAndWait();
+                    AlertController.animationMesseagewrong("Error","Wrong Conform Password!");
                 }
             }
         }

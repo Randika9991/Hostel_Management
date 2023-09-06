@@ -22,12 +22,12 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="367.0" layoutY="148.0" prefHeight="35.0" prefWidth="153.0" text="Room Type Id" textFill="WHITE">
+      <Label layoutX="367.0" layoutY="141.0" prefHeight="35.0" prefWidth="153.0" text="Room Type Id" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="912.0" layoutY="152.0" text="Type" textFill="WHITE">
+      <Label layoutX="912.0" layoutY="145.0" text="Type" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -37,8 +37,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtRoomTyId" focusColor="WHITE" layoutX="367.0" layoutY="187.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
-      <JFXTextField fx:id="txtRoomType" focusColor="WHITE" layoutX="912.0" layoutY="187.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
+      <JFXTextField fx:id="txtRoomTyId" focusColor="WHITE" layoutX="367.0" layoutY="180.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
+      <JFXTextField fx:id="txtRoomType" focusColor="WHITE" layoutX="912.0" layoutY="180.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXTextField fx:id="txtKeyMoney" focusColor="WHITE" layoutX="367.0" layoutY="274.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXTextField fx:id="txtQTY" focusColor="WHITE" layoutX="912.0" layoutY="274.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../style/style.css" />
       <JFXButton layoutX="1073.0" layoutY="409.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../style/style.css" text="Save" textFill="WHITE" />
@@ -65,5 +65,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="lblRMSTID" layoutX="367.0" layoutY="216.0" prefHeight="21.0" prefWidth="265.0" text="invalid student id pleaes fill ex: RM-001" textFill="RED" />
    </children>
 </AnchorPane>

@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import service.ServiceFactory;
@@ -57,12 +54,16 @@ public class RoomFormController {
     @FXML
     private JFXTextField txtMaxNo;
 
+    @FXML
+    private Label lblRMSTID;
+
     RoomService roomService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.ROOM);
 
     @FXML
     void initialize() {
         setDataToTableView();
         setCellValueFactory();
+        lblRMSTID.setVisible(false);
     }
 
     private void clearAll() {
@@ -81,14 +82,14 @@ public class RoomFormController {
             RoomDto roomDto = getStudent();
             boolean savedCusId = roomService.deleteRoom(roomDto);
             if (savedCusId) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
+                AlertController.okconfirmmessage("deleted");
                 setDataToTableView();
                 clearAll();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                AlertController.animationMesseagewrong("Error","Error!");
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -96,17 +97,22 @@ public class RoomFormController {
     void saveOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            RoomDto roomDto = getStudent();
-            String savedCusId = roomService.saveRoom(roomDto);
-            if (savedCusId.equals(txtRoomTyId.getText())) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save succsess!").showAndWait();
-                setDataToTableView();
-                clearAll();
+            if (ValidateField.roomIdCheck(txtRoomTyId.getText())) {
+                lblRMSTID.setVisible(false);
+                RoomDto roomDto = getStudent();
+                String savedCusId = roomService.saveRoom(roomDto);
+                if (savedCusId.equals(txtRoomTyId.getText())) {
+                    AlertController.okconfirmmessage("save succsess!");
+                    setDataToTableView();
+                    clearAll();
+                } else {
+                    AlertController.animationMesseagewrong("Error","Error!");
+                }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                lblRMSTID.setVisible(true);
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -127,17 +133,22 @@ public class RoomFormController {
     void updateOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            RoomDto roomDto = getStudent();
-            boolean savedCusId = roomService.updateRoom(roomDto);
-            if (savedCusId) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
-                setDataToTableView();
-                clearAll();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            if (ValidateField.roomIdCheck(txtRoomTyId.getText())) {
+                lblRMSTID.setVisible(false);
+                RoomDto roomDto = getStudent();
+                boolean savedCusId = roomService.updateRoom(roomDto);
+                if (savedCusId) {
+                    AlertController.okconfirmmessage("update succsess!");
+                    setDataToTableView();
+                    clearAll();
+                } else {
+                    AlertController.animationMesseagewrong("Error","Error!");
+                }
+            }else {
+                lblRMSTID.setVisible(true);
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 

@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dto.ReservationDto;
+import dto.RoomDto;
 import dto.StudentDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +54,9 @@ public class ReservationFormController {
     @FXML
     private ComboBox<String> COBStudentId;
 
+    @FXML
+    private Label lblReid;
+
     ReservationService reservationService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.RESERVATION);
 
     @FXML
@@ -62,14 +66,13 @@ public class ReservationFormController {
             ReservationDto reservationDto = getResovation();
             boolean deleteRes = reservationService.deleteReservation(reservationDto);
             if (deleteRes) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
+                AlertController.okconfirmmessage("deleted");
                 setDataToTableView();
                 clearAll();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                AlertController.animationMesseagewrong("Error","Error!");
             }
         }
-
     }
 
     private void clearAll() {
@@ -84,17 +87,22 @@ public class ReservationFormController {
     void saveOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            ReservationDto reservationDto = getResovation();
-            String reservation = reservationService.saveReservation(reservationDto);
-            if (reservation.equals(txtResId.getText())) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save reservation!").showAndWait();
-                setDataToTableView();
-                clearAll();
+            if (ValidateField.ResevationIdCheck(txtResId.getText())) {
+                lblReid.setVisible(false);
+                ReservationDto reservationDto = getResovation();
+                String reservation = reservationService.saveReservation(reservationDto);
+                if (reservation.equals(txtResId.getText())) {
+                    AlertController.okconfirmmessage("save succsess!");
+                    setDataToTableView();
+                    clearAll();
+                } else {
+                    AlertController.animationMesseagewrong("Error","Error!");
+                }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                lblReid.setVisible(true);
             }
-        }else {
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+        }else{
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -125,17 +133,22 @@ public class ReservationFormController {
     void updateOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            ReservationDto reservationDto = getResovation();
-            boolean savedCusId = reservationService.updateReservation(reservationDto);
-            if (savedCusId) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
-                setDataToTableView();
-                clearAll();
+            if (ValidateField.ResevationIdCheck(txtResId.getText())) {
+                lblReid.setVisible(false);
+                ReservationDto reservationDto = getResovation();
+                boolean savedCusId = reservationService.updateReservation(reservationDto);
+                if (savedCusId) {
+                    AlertController.okconfirmmessage("update succsess!");
+                    setDataToTableView();
+                    clearAll();
+                } else {
+                    AlertController.animationMesseagewrong("Error","Error!");
+                }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                lblReid.setVisible(true);
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -174,7 +187,6 @@ public class ReservationFormController {
             return true;
         } else {
             return false;
-
         }
     }
 
@@ -203,7 +215,6 @@ public class ReservationFormController {
         COMStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
-
     @FXML
     void initialize() {
         setDataToTableView();
@@ -211,6 +222,7 @@ public class ReservationFormController {
         getAllRoomId();
         getAllStudentId();
         setCellValueFactory();
+        lblReid.setVisible(false);
     }
 
 

@@ -56,6 +56,12 @@ public class StudentController {
     @FXML
     private JFXComboBox<String> COBGender;
 
+    @FXML
+    private Label lblValidateSTID;
+
+    @FXML
+    private Label lblValidateContact;
+
     StudentService studentService = ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceType.STUDENT);
 
     @FXML
@@ -63,6 +69,8 @@ public class StudentController {
         COBGender.getItems().addAll("male", "female");
         setCellValueFactory();
         setDataToTableView();
+        lblValidateSTID.setVisible(false);
+        lblValidateContact.setVisible(false);
     }
 
     private void clearAll() {
@@ -81,14 +89,14 @@ public class StudentController {
             StudentDto customer = getStudent();
             boolean savedCusId = studentService.deleteStudent(customer);
             if (savedCusId) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "deleted!").showAndWait();
+                AlertController.okconfirmmessage("deleted");
                 setDataToTableView();
                 clearAll();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+                AlertController.animationMesseagewrong("Error","Error!");
             }
         } else {
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -96,17 +104,35 @@ public class StudentController {
     void saveOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            StudentDto customer = getStudent();
-            String savedCusId = studentService.saveStudent(customer);
-            if (!savedCusId.equals(null)) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "save succsess!").showAndWait();
-                setDataToTableView();
-                clearAll();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            if(ValidateField.StudentIdCheck(txtStuId.getText()) || ValidateField.contactCheck(txtStuNumber.getText())){
+                lblValidateSTID.setVisible(false);
+                if (ValidateField.contactCheck(txtStuNumber.getText())) {
+                    lblValidateContact.setVisible(false);
+                    if (ValidateField.StudentIdCheck(txtStuId.getText())) {
+                        lblValidateSTID.setVisible(false);
+                        lblValidateContact.setVisible(false);
+                        StudentDto customer = getStudent();
+                        String savedCusId = studentService.saveStudent(customer);
+                        if (!savedCusId.equals(null)) {
+
+                            AlertController.okconfirmmessage("save succsess!");
+                            setDataToTableView();
+                            clearAll();
+                        } else {
+                            AlertController.animationMesseagewrong("Error","Error!");
+                        }
+                    }else {
+                        lblValidateSTID.setVisible(true);
+                    }
+                }else {
+                    lblValidateContact.setVisible(true);
+                }
+            }else {
+                lblValidateSTID.setVisible(true);
+                lblValidateContact.setVisible(true);
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 
@@ -128,17 +154,34 @@ public class StudentController {
     void updateOnAction(ActionEvent event) {
         boolean emptyFields =  noEmptyValuesInTextFields() ;
         if (emptyFields) {
-            StudentDto customer = getStudent();
-            boolean savedCusId = studentService.updateStudent(customer);
-            if (savedCusId) {
-                new Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "update succsess!").showAndWait();
-                setDataToTableView();
-                clearAll();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Erorr!").showAndWait();
+            if(ValidateField.StudentIdCheck(txtStuId.getText()) || ValidateField.contactCheck(txtStuNumber.getText())){
+                lblValidateSTID.setVisible(false);
+                if (ValidateField.contactCheck(txtStuNumber.getText())) {
+                    lblValidateContact.setVisible(false);
+                    if (ValidateField.StudentIdCheck(txtStuId.getText())) {
+                        lblValidateSTID.setVisible(false);
+                        lblValidateContact.setVisible(false);
+                        StudentDto customer = getStudent();
+                        boolean savedCusId = studentService.updateStudent(customer);
+                        if (savedCusId) {
+                            AlertController.okconfirmmessage("update succsess!");
+                            setDataToTableView();
+                            clearAll();
+                        } else {
+                            AlertController.animationMesseagewrong("Error","Error!");
+                        }
+                    }else {
+                        lblValidateSTID.setVisible(true);
+                    }
+                }else {
+                    lblValidateContact.setVisible(true);
+                }
+            }else {
+                lblValidateSTID.setVisible(true);
+                lblValidateContact.setVisible(true);
             }
         }else{
-            new Alert(Alert.AlertType.ERROR, "please make sure to fill out all the required fields").showAndWait();
+            AlertController.animationMesseagewrong("Error","please make sure to fill out all the required fields");
         }
     }
 

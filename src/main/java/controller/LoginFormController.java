@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.LoginService;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class LoginFormController {
@@ -56,21 +57,22 @@ public class LoginFormController {
     }
 
     @FXML
-    void loginPageOnAction(ActionEvent event) throws IOException {
+    void loginPageOnAction(ActionEvent event) throws IOException, AWTException {
 
         if (txtUserName.getText().isEmpty() && txtLogPassword.getText().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please Enter Your name and password!").showAndWait();
+            AlertController.animationMesseagewrong("Error","Please Enter Your name and password!");
         } else {
             if (txtUserName.getText().isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "Please fill User Name!").showAndWait();
+                AlertController.animationMesseagewrong("Error","Please fill User Name!");
             } else {
                 if (txtLogPassword.getText().isEmpty()) {
-                    new Alert(Alert.AlertType.ERROR, "Please fill User Password!").showAndWait();
+                    AlertController.animationMesseagewrong("Error","Please fill User Password!");
                 } else {
                     CreateNewUserDto existingCustomer = loginService.getUser(txtUserName.getText());
                     System.out.println(existingCustomer);
 
                     if (existingCustomer.getUserPassword().equals(txtLogPassword.getText())) {
+                        AlertController.notificationBar("HOSTEL MANAGEMENT","Login Success!");
                         Name = existingCustomer.getUserName();
                         Stage stage = new Stage();
                         Parent root = null;
@@ -82,7 +84,7 @@ public class LoginFormController {
                         stage.show();
                         adminAncPane.getScene().getWindow().hide();
                     } else {
-                        new Alert(Alert.AlertType.ERROR, "Please try again!").showAndWait();
+                      //  new Alert(Alert.AlertType.ERROR, "Please try again!").showAndWait();
                     }
                 }
             }
